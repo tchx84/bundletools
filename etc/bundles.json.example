@@ -1,0 +1,13 @@
+{
+    "description": "AU1D Activities",
+
+    "url": "http://localhost:8000/some/deeper/path/",
+
+    "path": "/home/tch/Devel/actools/some/deeper/path",
+
+    "root": "/home/tch/Devel/actools",
+
+    "user": "tch",
+
+    "server": "localhost" 
+}
