@@ -27,8 +27,8 @@ How can I use it?
     ./update.sh Letters-25.xo
     ```
 
-It will automatically upload the bundle to the corresponding
-directory in the server and it will also re-generate the
-microformat file.
+    It will automatically upload the bundle to the corresponding
+    directory in the server and it will also re-generate the
+    microformat file.
 
 2. Done.
