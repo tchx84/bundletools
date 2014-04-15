@@ -14,14 +14,27 @@ What problems does it solve?
 How can I use it?
 -----------------
 
-0. Create your bundles configuration file.
+0. Get latest bundletools bits.
+
+    ```
+    git clone https://github.com/tchx84/bundletools.git
+    cd bundletools
+    ```
+
+1. Create or download your configuration recipe.
 
     ```
     cp etc/bundles.json.example etc/bundles.json
     vim etc/bundles.json
     ```
 
-1. Update one or more bundles, to a specific bundles repository.
+    or
+
+    ```
+    cp ~/Downloads/bundles.json etc/bundles.json
+    ```
+
+2. Update one or more bundles, to a specific bundles repository.
 
     ```
     ./update.sh arm-addons Letters-25.xo
@@ -31,4 +44,4 @@ How can I use it?
     directory in the server and it will also re-generate the
     microformat file.
 
-2. Done.
+3. Done.
