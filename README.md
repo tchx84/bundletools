@@ -21,10 +21,10 @@ How can I use it?
     vim etc/bundles.json
     ```
 
-1. Update one or more bundles.
+1. Update one or more bundles, to a specific bundles repository.
 
     ```
-    ./update.sh Letters-25.xo
+    ./update.sh arm-addons Letters-25.xo
     ```
 
     It will automatically upload the bundle to the corresponding

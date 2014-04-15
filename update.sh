@@ -15,16 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 
-bundles="${@:1}"
+if [ $# -lt 2 ]; then
+    echo "usage:" $0 "<name>" "<bundles>"
+    exit -1
+fi
+
+name=$1
+bundles="${@:2}"
 
 json=./etc/bundles.json
 
 user="$(./helpers/get_key.py -p ${json} -k user)"
 server="$(./helpers/get_key.py -p ${json} -k server)"
-path="$(./helpers/get_key.py -p ${json} -k path)"
-
 root="$(./helpers/get_key.py -p ${json} -k root)"
-url="$(./helpers/get_key.py -p ${json} -k url)"
+
+path="$(./helpers/get_repo_key.py -p ${json} -n ${name} -k path)"
+url="$(./helpers/get_repo_key.py -p ${json} -n ${name} -k url)"
 
 echo "Uploading to:"
 echo -e '\t'$user@$server:$path/bundles/

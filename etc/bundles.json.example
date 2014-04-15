@@ -1,13 +1,17 @@
 {
-    "description": "AU1D Activities",
-
-    "url": "http://localhost:8000/some/deeper/path/",
-
-    "path": "/home/tch/Devel/actools/some/deeper/path",
+    "description": "Example bundles repositories",
 
     "root": "/home/tch/Devel/actools",
 
     "user": "tch",
 
-    "server": "localhost" 
+    "server": "localhost",
+
+    "list": [
+        {
+            "name": "arm",
+            "url": "http://localhost:8000/some/deeper/path/",
+            "path": "/home/tch/Devel/actools/some/deeper/path"
+       }
+    ] 
 }
