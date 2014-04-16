@@ -13,6 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 
+import re
 import os
 import io
 
@@ -26,6 +27,14 @@ class Bundles(list):
     def __init__(self, url, path):
         self._url = url
         self._path = path
+
+    def normalized(self, version):
+        return [int(n) for n in re.findall('\\b\\d+\\b', version)]
+
+    def is_newer(self, version1, version2):
+        if self.normalized(version1) > self.normalized(version2):
+            return True
+        return False
 
     def find(self):
         _index = {}
@@ -48,7 +57,7 @@ class Bundles(list):
                     info = _index.get(bundle_id, None)
 
                     if info is not None:
-                        if version > info['version']:
+                        if self.is_newer(version, info['version']):
                             self.remove(info)
                         else:
                             continue
