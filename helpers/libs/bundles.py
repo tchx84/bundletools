@@ -62,10 +62,12 @@ class Bundles(list):
                         else:
                             continue
 
+                    name = parser.get('Activity', 'name')
                     url = urljoin(self._url, os.path.join('./bundles', name))
 
                     info = {'id': bundle_id,
                             'version': version,
+                            'name': name,
                             'url': url}
 
                     self.append(info)

@@ -53,5 +53,12 @@ How can I use it?
     It will list all the bundles that matches the expression, and
     will remove the bundles from the corresponding bundles directory,
     after confirmation.
-    
 
+4. Make an inventory of all activities provided:
+
+    ```
+    ./helpers/inventory.py --path /path/to/bundles/
+    ```
+
+    It will output, in CVS format, the list of activities. This includes
+    the activity bundle_id and name.
