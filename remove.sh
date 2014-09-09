@@ -1,0 +1,65 @@
+#!/bin/bash -
+
+# Copyright (c) 2014 Martin Abente Lahaye. - tch@sugarlabs.org
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+
+if [ $# -lt 2 ]; then
+    echo "usage:" $0 "<name>" "<file>"
+    exit -1
+fi
+
+name=$1
+file=$2
+
+json=./etc/bundles.json
+
+user="$(./helpers/get_key.py -p ${json} -k user)"
+server="$(./helpers/get_key.py -p ${json} -k server)"
+root="$(./helpers/get_key.py -p ${json} -k root)"
+
+path="$(./helpers/get_repo_key.py -p ${json} -n ${name} -k path)"
+url="$(./helpers/get_repo_key.py -p ${json} -n ${name} -k url)"
+
+bundles="$(ssh $user@$server "find ${path}/bundles/${file} | grep .xo")"
+
+if [ $? != 0 ]; then
+    echo "Could find the bundles."
+    exit -1
+fi
+
+echo "Deleting:"
+for bundle in $bundles; do
+    echo -e '\t'$bundle
+done
+
+echo "Please type \"confirm\" to continue..."
+read confirm
+
+if [ "$confirm" != "confirm" ]; then
+    echo "Nothing has been done."
+    exit -1
+fi
+
+ssh $user@$server "rm -i ${bundles}"
+echo "Bundles have been removed."
+
+ssh $user@$server "${root}/helpers/generate.py -u ${url} -p ${path}/bundles/ > ${path}/index.html"
+
+if [ $? != 0 ]; then
+    echo "Could not update microformat file."
+    exit -1
+fi
+
+echo "Bundles successfully updated."

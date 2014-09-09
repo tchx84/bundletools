@@ -44,4 +44,14 @@ How can I use it?
     directory in the server and it will also re-generate the
     microformat file.
 
-3. Done.
+3. Remove bundles specifying an expression.
+
+    ```
+    ./remove.sh arm-addons Letters*
+    ```
+
+    It will list all the bundles that matches the expression, and
+    will remove the bundles from the corresponding bundles directory,
+    after confirmation.
+    
+
